@@ -5,7 +5,7 @@ class Bdd
     private $bdd;
     public function __construct()
     {
-        $this->bdd = new PDO('mysql:host=localhost;dbname=mls_stagiaire;charset=utf8', 'root', '');
+        $this->bdd = new PDO('mysql:host=localhost;dbname=mls_objet;charset=utf8', 'root', '');
     }
 
     public function getBdd(){

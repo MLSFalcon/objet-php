@@ -1,32 +1,36 @@
+<?php
+require_once "Include/Bdd.php";
+require_once "traitement/GestionUtilisateur.php";
+?>
 <h2>Inscription</h2>
-<form method="post" action="exC.php">
+<form method="post">
     <label>Nom
         <input type="text" name="nom"></label>
     <label>Prenom
-        <input type="text" name="prenom"></label>
+        <input type="text" name="email"></label>
     <label>tel
-        <input type="text" name="tel"></label>
-    <input type="submit" name="envoyer">
+        <input type="text" name="mdp"></label>
+    <input type="submit" name="ajoutUser">
 </form>
+<?php
+if(isset($_POST['ajoutUser'])){
+    $user = new GestionUtilisateur($_POST);
+    $user->inscription();
+}
+?>
 <br>
 <h2>Connexion</h2>
-<br>
-<h2>Modifier</h2>
+<form method="post">
+    <label>Nom
+        <input type="text" name="email"></label>
+    <label>Prenom
+        <input type="text" name="mdp"></label>
+    <input type="submit" name="connexion">
+</form>
 <br>
 <?php
-include "Bdd.php";
-$bdd = new Bdd();
-$req = $bdd->getBdd()->prepare('SELECT * FROM stagiaire WHERE id_stagiaire = 53');
-$req->execute();
-$liste = $req->fetchAll();
+if(isset($_POST['connexion'])){
+    $user = new GestionUtilisateur($_POST);
+    $user->connexion();
+}
 ?>
-<form method="post" action="exC.php">
-    <label>Nom
-        <input type="text" name="nom" value="<?= $liste[0]['nom'] ?>"></label>
-    <label>Prenom
-        <input type="text" name="prenom" value="<?= $liste[0]['prenom'] ?>"></label>
-    <label>tel
-        <input type="text" name="tel" value="<?= $liste[0]['tel'] ?>"></label>
-    <input type="submit" name="envoyer">
-</form>
-<h2>Supprimer</h2>
