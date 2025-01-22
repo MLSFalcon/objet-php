@@ -65,5 +65,16 @@ class GestionUtilisateur
     {
         $this->mdp = $mdp;
     }
-
+    public function getNom()
+    {
+        return $this->nom;
+    }
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    public function getMdp()
+    {
+        return $this->mdp;
+    }
 }
